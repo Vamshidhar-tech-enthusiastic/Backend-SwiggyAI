@@ -22,7 +22,7 @@ const verifyToken= async(req,res,next)=>{
     }
     catch(error)
     {
-        return res.status(401).json("Internal Server Error.");
+        return res.status(401).json(error);
     }
 }
 module.exports=verifyToken
