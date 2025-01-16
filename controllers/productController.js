@@ -5,7 +5,7 @@ const path = require('path');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../uploads')); 
+        cb(null, '/uploads'); 
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname)); 
@@ -22,7 +22,7 @@ const addProduct = async(req, res) => {
         console.log(firmId)
         const firm = await Firm.findById(firmId);
         if (!firm) {
-            return res.status(400).json({ message: 'Firm not Found.' });
+            return res.status(400).json({ message: 'Firm Resturant not Found.' });
         }
        
         const product = new Product({

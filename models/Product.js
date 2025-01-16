@@ -27,11 +27,11 @@ const productSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    firm: {
+    firm:[ {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'firm',
         required: true,
-    },
+    }],
 });
 
 const Product = mongoose.model('Product', productSchema);
