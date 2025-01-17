@@ -50,6 +50,22 @@ const vendorLogin= async(req,res)=>{
         return res.status(400).json("Internal server error");
     }
 }
+const getId=async(req,res)=>
+{
+    const vendorid=req.params.id;
+    try
+    {
+          const vendor=await Vendor.findById(vendorid)
+          if(!vendor){
+            return res.status(400).json("Vendor Not Found.");
+          }
+          return res.status(200).json({vendorFirmId:vendor.firm});
+    }
+    catch(error)
+    {
+        return res.status(400).json(error);
+    }
+}
 const getVendor=async(req,res)=>
 {
     const vendorDetails=await Vendor.find().populate('firm');
@@ -71,4 +87,4 @@ const getVendorById=async(req,res)=>
         return res.status(400).json(error);
     }
 }
-module.exports={vendorRegister,vendorLogin,getVendor,getVendorById}
+module.exports={vendorRegister,vendorLogin,getVendor,getVendorById,getId}

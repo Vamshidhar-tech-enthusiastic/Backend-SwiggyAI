@@ -6,4 +6,5 @@ router.post('/register',vendorController.vendorRegister)
 router.post('/login',vendorController.vendorLogin)
 router.get('/getVendor',vendorController.getVendor)
 router.get('/getVendorById/:id',vendorController.getVendorById)
+router.get('/getId/:id',vendorController.getId)
 module.exports=router
