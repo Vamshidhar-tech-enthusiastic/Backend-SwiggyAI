@@ -41,7 +41,7 @@ const vendorLogin= async(req,res)=>{
             return res.status(401).json({error:"Invalid password."})
         }
         const token=jwt.sign({vendorId: Vemail._id},key,{expiresIn:"1h"})
-        return res.status(201).json(token)
+        return res.status(201).json({token:token,vendorId:Vemail._id})
         
 
     }
