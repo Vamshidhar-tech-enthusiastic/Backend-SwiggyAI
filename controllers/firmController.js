@@ -36,7 +36,7 @@ const addFirm = async (req, res) => {
         });
 
         const savedFirm = await firm.save();
-
+        const firmId=savedFirm._id;
         await Vendor.findByIdAndUpdate(
             vendorId,
             { firm: savedFirm._id },
@@ -45,7 +45,7 @@ const addFirm = async (req, res) => {
 
 
         return res.status(201).json({
-            message: 'Firm added successfully.',
+            message: 'Firm added successfully.',firmId
             
         });
     } catch (error) {
