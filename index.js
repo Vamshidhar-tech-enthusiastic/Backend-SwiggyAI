@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use('uploads/', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/vendor', vendorRoutes);
 app.use('/firm', firmRoutes);
 app.use('/product', productRoutes);
