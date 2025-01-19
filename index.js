@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URI)
     app.use(cors({
         origin: '*',  // Replace with your actual frontend domain
         methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed methods
-        // Allowed headers
+        allowedHeaders: ['Content-Type', 'Authorization', 'token'],
     }));
     
 app.use(bodyParser.json());
