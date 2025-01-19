@@ -10,7 +10,7 @@ const firmRoutes = require('./routes/firmRoutes');
 const productRoutes = require('./routes/productRoutes');
 
 const app = express();
-const PORT = 9000;
+
 dotenv.config();
 
 // MongoDB connection
@@ -36,7 +36,3 @@ app.get('/home', (req, res) => {
 });
 
 app.options('*', cors());
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
