@@ -8,7 +8,7 @@ const path = require('path');
 const vendorRoutes = require('./routes/vendorRoutes');
 const firmRoutes = require('./routes/firmRoutes');
 const productRoutes = require('./routes/productRoutes');
-
+const mime=require('mime')
 const app = express();
 
 dotenv.config();
