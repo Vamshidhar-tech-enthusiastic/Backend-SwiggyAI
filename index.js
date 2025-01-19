@@ -19,12 +19,12 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     .catch((error) => console.error('MongoDB connection error:', error));
 
 
-app.use(cors({
-        origin: '*',  
-        methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-        allowedHeaders: ['Content-Type', 'Authorization'], 
-        credentials: true,
-}));
+    app.use(cors({
+        origin: 'https://frontend-viggyai.onrender.com',  // Replace with your actual frontend domain
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed methods
+        allowedHeaders: ['Content-Type', 'Authorization'],  // Allowed headers
+    }));
+    
 app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/vendor', vendorRoutes);
