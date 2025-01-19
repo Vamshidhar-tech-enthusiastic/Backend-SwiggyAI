@@ -35,8 +35,8 @@ app.get('/uploads/:imageName', (req, res) => {
     console.log(res.getHeaders());
 
     res.setHeader('Content-Type', contentType);
-    res.setHeader('Access-Control-Allow-Origin', '*');  // Add this header for images
-    
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.sendFile(path.join(__dirname, 'uploads', imgName), (err) => {
         if (err) {
             res.status(404).send('Image not found');
