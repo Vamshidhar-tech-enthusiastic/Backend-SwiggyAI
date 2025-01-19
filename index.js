@@ -20,11 +20,12 @@ mongoose.connect(process.env.MONGO_URI)
 
 
     app.use(cors({
-        origin: '*',  // Replace with your actual frontend domain
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed methods
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
         allowedHeaders: ['Content-Type', 'Authorization', 'token'],
+        preflightContinue: true, // Allow preflight to continue
+        optionsSuccessStatus: 204 // For legacy browser support
     }));
-    
 app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/vendor', vendorRoutes);
