@@ -37,3 +37,7 @@ app.get('/home', (req, res) => {
 });
 
 app.options('*', cors());
+const PORT = process.env.PORT || 9000; // Default to 3000 if PORT is not set
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
