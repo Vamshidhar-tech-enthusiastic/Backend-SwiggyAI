@@ -50,6 +50,7 @@ const vendorLogin= async(req,res)=>{
         return res.status(400).json("Internal server error");
     }
 }
+//Get vendor firm Id
 const getId=async(req,res)=>
 {
     const vendorid=req.params.id;

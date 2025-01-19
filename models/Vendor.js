@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-
+// Vendor Schema
 const vendorSchema=new mongoose.Schema(
 {
     username:{

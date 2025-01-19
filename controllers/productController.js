@@ -4,13 +4,11 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Ensure uploads directory exists
 const uploadDir = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
 
-// Multer storage configuration
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/'); 
@@ -21,13 +19,11 @@ const storage = multer.diskStorage({
 });
 
 const uploade = multer({ storage: storage });
-
-// Add Product to a Firm
 const addProduct = async (req, res) => {
     try {
         const { productName, price, category, bestSeller, description } = req.body;
         const image = req.file ? req.file.filename : undefined;
-        const firmId = req.params.firmID; // Firm ID passed as a parameter in URL
+        const firmId = req.params.firmID; 
 
         const firm = await Firm.findById(firmId);
         if (!firm) {
@@ -45,8 +41,6 @@ const addProduct = async (req, res) => {
         });
 
         const savedProduct = await product.save();
-
-        // Linking the product with the firm
         await Firm.findByIdAndUpdate(
             firmId,
             { $push: { products: savedProduct._id } },
@@ -63,10 +57,9 @@ const addProduct = async (req, res) => {
     }
 };
 
-// Get all products for all firms
 const getProduct = async (req, res) => {
     try {
-        const firms = await Firm.find().populate('products'); // Populate the products array in Firm
+        const firms = await Firm.find().populate('products'); 
         return res.status(200).json(firms);
     } catch (error) {
         console.error('Error fetching products:', error);
@@ -74,7 +67,6 @@ const getProduct = async (req, res) => {
     }
 };
 
-// Get products by specific firm
 const getProductByFirm = async (req, res) => {
     try {
         const firmId = req.params.id;
@@ -95,7 +87,7 @@ const getProductByFirm = async (req, res) => {
     }
 };
 
-// Delete product by ID
+
 const deleteProductById = async (req, res) => {
     try {
         const productId = req.params.id;

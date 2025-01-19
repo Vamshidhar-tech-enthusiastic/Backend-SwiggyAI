@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-
+//Firm or Restaurant Schema
 const firmSchema=new mongoose.Schema(
 {
     firmName:{

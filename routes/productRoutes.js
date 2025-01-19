@@ -3,6 +3,7 @@ const express=require('express')
 
 const router=express.Router()
 
+//routes to the endpoints
 router.post('/addProduct/:firmID', productController.addProduct);
 router.get('/getProduct', productController.getProduct);
 router.get('/getProductByFirm/:id', productController.getProductByFirm);

@@ -4,13 +4,11 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Ensure uploads directory exists
 const uploadDir = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
 
-// Multer storage configuration
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/'); 
@@ -28,11 +26,9 @@ const addFirm = async (req, res) => {
         const { firmName, area, category, region, offer } = req.body;
         const image = req.file ? req.file.filename : undefined;
         const vendorId = req.vendorId;
-
         if (!vendorId) {
             return res.status(400).json({ message: 'Vendor ID is required.' });
         }
-
         const vendor = await Vendor.findById(vendorId);
         if (!vendor) {
             return res.status(404).json({ message: 'Vendor not found.' });
@@ -75,7 +71,6 @@ const deleteFirmById = async (req, res) => {
     if (!deletefirm) {
         return res.status(404).json("Firm not found");
     }
-
     return res.status(200).json({ message: "Firm deleted successfully" });
 };
 
