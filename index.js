@@ -27,7 +27,23 @@ mongoose.connect(process.env.MONGO_URI)
         optionsSuccessStatus: 204 // For legacy browser support
     }));
 app.use(bodyParser.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.get('/uploads/:imageName', (req, res) => {
+    const imgName = req.params.imageName;
+    const contentType = mime.lookup(imgName) || 'application/octet-stream';
+
+    // Log headers for debugging
+    console.log(res.getHeaders());
+
+    res.setHeader('Content-Type', contentType);
+    res.setHeader('Access-Control-Allow-Origin', '*');  // Add this header for images
+    
+    res.sendFile(path.join(__dirname, 'uploads', imgName), (err) => {
+        if (err) {
+            res.status(404).send('Image not found');
+        }
+    });
+});
+
 app.use('/vendor', vendorRoutes);
 app.use('/firm', firmRoutes);
 app.use('/product', productRoutes);
