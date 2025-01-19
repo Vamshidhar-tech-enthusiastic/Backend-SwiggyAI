@@ -1,17 +1,8 @@
 const Vendor = require('../models/Vendor');
 const Firm = require('../models/Firm');
-const multer = require('multer');
 const path = require('path');
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); 
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() +path.extname(file.originalname));
-    },
-});
 
-const upload = multer({ storage: storage });
+
 const addFirm = async (req, res) => {
     try {
         const { firmName, area, category, region, offer } = req.body;
@@ -73,6 +64,6 @@ const getFirm = async (req, res) => {
 };
 
 module.exports = {
-    addFirm: [upload.single('image'), addFirm],
+    addFirm,
     getFirm,deleteFirmById
 };
