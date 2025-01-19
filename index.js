@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 
     app.use(cors({
-        origin: 'https://frontend-viggyai.onrender.com',  // Replace with your actual frontend domain
+        origin: 'https://backend-viggyai.onrender.com',  // Replace with your actual frontend domain
         methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed methods
         allowedHeaders: ['Content-Type', 'Authorization'],  // Allowed headers
     }));
